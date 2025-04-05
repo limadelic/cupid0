@@ -5,6 +5,11 @@ defmodule Scraper.IndeedTest do
 
   setup :verify_on_exit!
 
+  setup do
+    Application.put_env(:scraper, :http_client, Scraper.MockHTTP)
+    :ok
+  end
+
   test "gets three jobs" do
     expect Scraper.MockHTTP, :get, fn _ ->
       {:ok, %{body: "[{},{},{}]"}} 
