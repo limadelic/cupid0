@@ -2,33 +2,28 @@ defmodule Scraper.IndeedTest do
 
   use ExUnit.Case
 
-  @job %{
-    key: "e3d5735de501774d",
-    company: "One-Inc",
-    title: "Software Engineer"
-  }
+  @job [
+    jk: "e3d5735de501774d",
+    cmp: "One-Inc",
+    t: "Software Engineer"
+  ]
 
-  test "builds url" do
+  test "builds indeed search url" do
 
-    url = view_url cmp: @job.company, t: @job.title
+    url = Scraper.Indeed.view_job @job
     [base, query] = String.split url, "?"
 
     assert base == "https://www.indeed.com/viewjob"
-    assert param(query, :jk) == @job.key
-    assert param(query, :cmp) == @job.company
-    assert param(query, :t) == @job.title
+    for {key, value} <- @job do
+      assert param(query, key) == value
+    end
 
-  end
-
-  defp view_url params do
-    Scraper.Indeed.view_job [jk: @job.key] ++ params
   end
 
   defp param query, key do
-    query
-    |> String.split("&")
-    |> Enum.find(& String.starts_with?(&1, "#{key}="))
-    |> String.replace_prefix("#{key}=", "")
+    ~r/#{key}=([^&]*)/
+    |> Regex.run(query)
+    |> List.last
     |> URI.decode_www_form
   end
 
