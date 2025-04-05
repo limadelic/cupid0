@@ -5,12 +5,14 @@ defmodule Scraper.IndeedTest do
   @base_url "https://www.indeed.com/viewjob"
 
   test "builds url" do
+
     url = view_url cmp: "One-Inc", t: "Software Engineer"
 
     assert String.starts_with? url, @base_url
     assert has_param? url, :jk, @job_key
     assert has_param? url, :cmp, "One-Inc"
     assert has_param? url, :t, "Software Engineer"
+
   end
 
   defp view_url params \\ [] do
@@ -20,4 +22,5 @@ defmodule Scraper.IndeedTest do
   defp has_param? url, key, value do
     String.contains? url, "#{key}=#{URI.encode_www_form value}"
   end
+
 end

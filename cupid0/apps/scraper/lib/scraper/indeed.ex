@@ -23,4 +23,5 @@ defmodule Scraper.Indeed do
   defp url params do
     @base_url <> "/viewjob?" <> URI.encode_query params
   end
+
 end
