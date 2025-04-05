@@ -15,6 +15,11 @@ defmodule Scraper.Indeed do
 
   end
 
+  def parse_title html do
+    [_, title] = Regex.run ~r/<title>(.*?) - /, html
+    title
+  end
+
   defp http_client do
 
     Application.get_env :scraper, :http_client
