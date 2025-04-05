@@ -6,7 +6,7 @@ defmodule Scraper.IndeedTest do
   test "calls indeed" do
 
     expect Scraper.HTTP, :get, fn _ ->
-      {:ok, %{body: "ok"}}
+      {:ok, %{body: "ok"}} 
     end
 
     Scraper.Indeed.search "dev"
