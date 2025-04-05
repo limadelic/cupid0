@@ -1,3 +1,3 @@
 defmodule Scraper.Indeed do
-  def search_url, do: ""
+  def search_url(params \\ []), do: ""
 end
