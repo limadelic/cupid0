@@ -1,3 +1,8 @@
 defmodule Scraper.Indeed do
-  def search_url(params \\ []), do: ""
+  @doc """
+  Builds a search URL for Indeed with the given parameters.
+  Params:
+    - q: search term
+  """
+  def search_url(_params \\ []), do: ""
 end
