@@ -23,4 +23,9 @@ defmodule Scraper.IndeedTest do
     url = Scraper.Indeed.search_url(q: "elixir", l: "Remote")
     assert String.contains?(url, "l=Remote")
   end
+
+  test "search_url works with empty parameters" do
+    url = Scraper.Indeed.search_url
+    assert url == "https://www.indeed.com/jobs?q=&l="
+  end
 end
