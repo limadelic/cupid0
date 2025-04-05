@@ -1,27 +1,43 @@
 defmodule Scraper.Indeed do
 
   @base_url "https://www.indeed.com"
+  @path "/viewjob"
 
-  def view_job params \\ [] do
+  def view_job params do
     params
     |> query
     |> url
   end
 
   defp query params do
-    %{
-      jk: param(params, :jk),
-      cmp: param(params, :cmp),
-      t: param(params, :t)
-    }
+    %{}
+    |> Map.put(:jk, get(params, :jk))
+    |> Map.put(:cmp, get(params, :cmp))
+    |> Map.put(:t, get(params, :t))
   end
 
-  defp param params, key, default \\ "" do
-    Keyword.get params, key, default
+  defp get params, key do
+    Keyword.get params, key, ""
   end
 
-  defp url params do
-    @base_url <> "/viewjob?" <> URI.encode_query params
+  defp url query do
+    parts = [
+      @base_url,
+      @path,
+      "?",
+      encode(query)
+    ]
+    Enum.join parts
+  end
+
+  defp encode params do
+    params
+    |> Enum.map(&encode_param/1)
+    |> Enum.join("&")
+  end
+
+  defp encode_param {key, value} do
+    "#{key}=#{URI.encode_www_form value}"
   end
 
 end
