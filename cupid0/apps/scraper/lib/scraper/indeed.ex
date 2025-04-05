@@ -7,20 +7,20 @@ defmodule Scraper.Indeed do
     - q: search term
     - l: location
   """
-  def search_url(params \\ []) do
+  def search_url params \\ [] do
     params
-    |> query()
-    |> url()
+    |> query
+    |> url
   end
 
-  defp query(params) do
+  defp query params do
     %{
       q: Keyword.get(params, :q, ""),
       l: Keyword.get(params, :l, "")
     }
   end
 
-  defp url(params) do
-    @base_url <> "/jobs?" <> URI.encode_query(params)
+  defp url params do
+    @base_url <> "/jobs?" <> URI.encode_query params
   end
 end
