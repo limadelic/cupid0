@@ -1,6 +1,7 @@
 defmodule Scraper.IndeedTest do
 
   use ExUnit.Case
+
   import Mox
 
   test "finds developer jobs" do
