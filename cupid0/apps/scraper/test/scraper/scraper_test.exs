@@ -2,16 +2,10 @@ defmodule Scraper.IndeedTest do
 
   use ExUnit.Case
 
-  import Mox
-
   test "finds developer jobs" do
 
-    expect Scraper.HTTP, :get, fn url ->
-      assert url == "https://www.indeed.com/jobs?q=dev"
-      {:ok, %{body: ""}}
-    end
-
-    Scraper.Indeed.search "dev"
+    jobs = Scraper.Indeed.search "dev"
+    assert length(jobs) > 0
 
   end
 
