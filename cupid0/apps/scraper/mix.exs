@@ -1,9 +1,9 @@
-defmodule Indeed.MixProject do
+defmodule Scraper.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :indeed,
+      app: :scraper,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -18,7 +18,7 @@ defmodule Indeed.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Indeed.Application, []}
+      mod: {Scraper.Application, []}
     ]
   end
 

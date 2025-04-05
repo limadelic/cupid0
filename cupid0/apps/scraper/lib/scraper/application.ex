@@ -1,4 +1,4 @@
-defmodule Indeed.Application do
+defmodule Scraper.Application do
   @moduledoc false
 
   use Application
@@ -7,7 +7,7 @@ defmodule Indeed.Application do
   def start(_type, _args) do
     children = []
 
-    opts = [strategy: :one_for_one, name: Indeed.Supervisor]
+    opts = [strategy: :one_for_one, name: Scraper.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

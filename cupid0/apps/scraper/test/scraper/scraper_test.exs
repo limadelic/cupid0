@@ -1,4 +1,4 @@
-defmodule Indeed.ScraperTest do
+defmodule Scraper.ScraperTest do
   use ExUnit.Case
 
   test "truth" do
