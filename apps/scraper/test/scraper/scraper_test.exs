@@ -3,6 +3,8 @@ defmodule Scraper.IndeedTest do
   use ExUnit.Case
   import Mox
 
+  setup :verify_on_exit!
+
   test "gets three jobs" do
     expect Scraper.MockHTTP, :get, fn _ ->
       {:ok, %{body: "[{},{},{}]"}} 
