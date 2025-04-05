@@ -6,5 +6,8 @@ defmodule Scraper.Indeed do
   Params:
     - q: search term
   """
-  def search_url(_params \\ []), do: @base_url <> "/jobs"
+  def search_url(params \\ []) do
+    query = Keyword.get(params, :q, "")
+    @base_url <> "/jobs?q=" <> query
+  end
 end

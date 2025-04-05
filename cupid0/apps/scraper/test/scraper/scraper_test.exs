@@ -8,4 +8,9 @@ defmodule Scraper.IndeedTest do
   test "search_url includes /jobs path" do
     assert String.contains?(Scraper.Indeed.search_url(q: "elixir"), "/jobs")
   end
+
+  test "search_url includes query parameter" do
+    url = Scraper.Indeed.search_url(q: "elixir")
+    assert String.contains?(url, "q=elixir")
+  end
 end
