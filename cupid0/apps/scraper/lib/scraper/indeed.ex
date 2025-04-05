@@ -2,6 +2,18 @@ defmodule Scraper.Indeed do
   @base_url "https://www.indeed.com"
 
   @doc """
+  Searches Indeed with the given parameters.
+  Params:
+    - q: search term
+    - l: location
+  """
+  def search params \\ [] do
+    params
+    |> search_url
+    |> HTTPoison.get
+  end
+
+  @doc """
   Builds a search URL for Indeed with the given parameters.
   Params:
     - q: search term

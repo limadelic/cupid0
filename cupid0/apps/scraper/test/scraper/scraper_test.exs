@@ -28,4 +28,8 @@ defmodule Scraper.IndeedTest do
     url = Scraper.Indeed.search_url
     assert url == "https://www.indeed.com/jobs?q=&l="
   end
+
+  test "search returns a response" do
+    assert {:ok, _body} = Scraper.Indeed.search q: "elixir"
+  end
 end
