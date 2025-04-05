@@ -24,12 +24,12 @@ generate_msg() {
 MSG=${1:-$(generate_msg)}
 echo "Message will be: ${MSG}"
 
-cd cupid0
+# Store the script directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Run the tests
 if mix test; then
     # If tests pass, commit all changes
-    cd ..
     git add .
     git commit -m "${MSG}"
     echo "✅ Tests passed - committed: ${MSG}"

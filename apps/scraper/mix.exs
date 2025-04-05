@@ -23,6 +23,11 @@ defmodule Scraper.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:httpoison, "~> 2.0"},
+      {:jason, "~> 1.4"},
+      {:mox, "~> 1.0", only: :test},
+      {:cabbage, "~> 0.3.0", only: :test}
+    ]
   end
 end
