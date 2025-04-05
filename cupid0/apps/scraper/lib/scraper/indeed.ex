@@ -9,18 +9,18 @@ defmodule Scraper.Indeed do
   """
   def search_url(params \\ []) do
     params
-    |> build_query_params()
-    |> build_url()
+    |> query()
+    |> url()
   end
 
-  defp build_query_params(params) do
+  defp query(params) do
     %{
       q: Keyword.get(params, :q, ""),
       l: Keyword.get(params, :l, "")
     }
   end
 
-  defp build_url(query_params) do
-    @base_url <> "/jobs?" <> URI.encode_query(query_params)
+  defp url(params) do
+    @base_url <> "/jobs?" <> URI.encode_query(params)
   end
 end
