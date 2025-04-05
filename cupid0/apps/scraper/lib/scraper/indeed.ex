@@ -1,6 +1,9 @@
 defmodule Scraper.Indeed do
 
-  def search _term do
+  @http Application.compile_env(:scraper, :http_client, HTTPoison)
+
+  def search term do
+    {:ok, _} = @http.get "https://www.indeed.com/jobs?q=#{term}"
     []
   end
 
