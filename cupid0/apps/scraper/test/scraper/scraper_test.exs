@@ -1,26 +1,35 @@
 defmodule Scraper.IndeedTest do
 
   use ExUnit.Case
-  @job_key "e3d5735de501774d"
-  @base_url "https://www.indeed.com/viewjob"
+
+  @job %{
+    key: "e3d5735de501774d",
+    company: "One-Inc",
+    title: "Software Engineer"
+  }
 
   test "builds url" do
 
-    url = view_url cmp: "One-Inc", t: "Software Engineer"
+    url = view_url cmp: @job.company, t: @job.title
+    [base, query] = String.split url, "?"
 
-    assert String.starts_with? url, @base_url
-    assert has_param? url, :jk, @job_key
-    assert has_param? url, :cmp, "One-Inc"
-    assert has_param? url, :t, "Software Engineer"
+    assert base == "https://www.indeed.com/viewjob"
+    assert param(query, :jk) == @job.key
+    assert param(query, :cmp) == @job.company
+    assert param(query, :t) == @job.title
 
   end
 
   defp view_url params do
-    Scraper.Indeed.view_job [jk: @job_key] ++ params
+    Scraper.Indeed.view_job [jk: @job.key] ++ params
   end
 
-  defp has_param? url, key, value do
-    String.contains? url, "#{key}=#{URI.encode_www_form value}"
+  defp param query, key do
+    query
+    |> String.split("&")
+    |> Enum.find(& String.starts_with?(&1, "#{key}="))
+    |> String.replace_prefix("#{key}=", "")
+    |> URI.decode_www_form
   end
 
 end
