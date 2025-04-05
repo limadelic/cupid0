@@ -1,7 +1,7 @@
-defmodule Scraper.ScraperTest do
+defmodule Scraper.IndeedTest do
   use ExUnit.Case
 
-  test "truth" do
-    assert true
+  test "search_url returns a string" do
+    assert is_binary(Scraper.Indeed.search_url())
   end
 end
