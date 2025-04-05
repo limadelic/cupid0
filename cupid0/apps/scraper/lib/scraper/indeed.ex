@@ -10,10 +10,9 @@ defmodule Scraper.Indeed do
   end
 
   defp query params do
-    %{}
-    |> Map.put(:jk, param(params, :jk))
-    |> Map.put(:cmp, param(params, :cmp))
-    |> Map.put(:t, param(params, :t))
+    %{
+      q: param(params, :q)
+    }
   end
 
   defp param params, key do
