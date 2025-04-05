@@ -1,4 +1,5 @@
 defmodule Scraper.IndeedTest do
+
   use ExUnit.Case
   @job_key "e3d5735de501774d"
   @base_url "https://www.indeed.com/viewjob"
