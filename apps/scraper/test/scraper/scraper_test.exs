@@ -1,26 +1,24 @@
 defmodule Scraper.IndeedTest do
-
   use ExUnit.Case
   import Mox
 
   setup :verify_on_exit!
 
   setup do
-    on_exit fn ->
+    on_exit(fn ->
       Application.put_env(:scraper, :http_client, HTTPoison)
-    end
+    end)
 
     Application.put_env(:scraper, :http_client, Scraper.MockHTTP)
     :ok
   end
 
   test "gets three jobs" do
-    expect Scraper.MockHTTP, :get, fn _ ->
+    expect(Scraper.MockHTTP, :get, fn(_) ->
       {:ok, %{body: "[{},{},{}]"}} 
-    end
+    end)
 
-    {:ok, jobs} = Scraper.Indeed.search "dev"
+    {:ok, jobs} = Scraper.Indeed.search("dev")
     assert length(jobs) == 3
   end
-
 end

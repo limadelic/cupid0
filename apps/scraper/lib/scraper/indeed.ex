@@ -6,10 +6,9 @@ defmodule Scraper.Indeed do
     http_client.get(url)
   end
 
-  def search term do
+  def search(term) do
     http_client = Application.get_env(:scraper, :http_client)
-    {:ok, %{body: json}} = http_client.get "https://www.indeed.com/jobs?q=#{term}"
-    {:ok, Jason.decode! json}
+    {:ok, %{body: json}} = http_client.get("https://www.indeed.com/jobs?q=#{term}")
+    {:ok, Jason.decode!(json)}
   end
-
 end
