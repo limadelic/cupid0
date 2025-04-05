@@ -15,7 +15,7 @@ defmodule Scraper.IndeedTest do
 
   end
 
-  defp view_url params \\ [] do
+  defp view_url params do
     Scraper.Indeed.view_job [jk: @job_key] ++ params
   end
 
