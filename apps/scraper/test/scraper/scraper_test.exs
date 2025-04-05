@@ -3,10 +3,11 @@ defmodule Scraper.IndeedTest do
   use ExUnit.Case
   import Mox
 
-  test "uses mock" do
+  test "calls indeed url" do
 
-    expect Scraper.HTTP, :get, fn _ ->
-      {:ok, %{status_code: 200}} 
+    expect Scraper.HTTP, :get, fn url ->
+      assert url == "https://www.indeed.com/jobs?q=dev"
+      {:ok, %{}} 
     end
 
     Scraper.Indeed.search "dev"
