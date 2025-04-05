@@ -27,13 +27,9 @@ echo "Message will be: ${MSG}"
 # Store the script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Make sure we're in the umbrella project directory
-cd "$SCRIPT_DIR/cupid0" || exit 1
-
 # Run the tests
 if mix test; then
     # If tests pass, commit all changes
-    cd ..
     git add .
     git commit -m "${MSG}"
     echo "✅ Tests passed - committed: ${MSG}"

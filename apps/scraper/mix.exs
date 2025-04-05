@@ -25,6 +25,7 @@ defmodule Scraper.MixProject do
   defp deps do
     [
       {:httpoison, "~> 2.0"},
+      {:jason, "~> 1.4"},
       {:mox, "~> 1.0", only: :test}
     ]
   end
