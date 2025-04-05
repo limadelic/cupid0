@@ -10,4 +10,9 @@ defmodule Scraper.IndeedTest do
     url = Scraper.Indeed.view_job jk: "e3d5735de501774d"
     assert String.contains? url, "jk=e3d5735de501774d"
   end
+
+  test "view_job includes company" do
+    url = Scraper.Indeed.view_job jk: "e3d5735de501774d", cmp: "One-Inc"
+    assert String.contains? url, "cmp=One-Inc"
+  end
 end
