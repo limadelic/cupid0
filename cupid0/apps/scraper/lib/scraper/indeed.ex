@@ -15,10 +15,12 @@ defmodule Scraper.Indeed do
 
   defp query params do
     %{
-      q: Keyword.get(params, :q, ""),
-      l: Keyword.get(params, :l, "")
+      q: param(params, :q),
+      l: param(params, :l)
     }
   end
+
+  defp param(params, key, default \\ ""), do: Keyword.get(params, key, default)
 
   defp url params do
     @base_url <> "/jobs?" <> URI.encode_query params
