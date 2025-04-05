@@ -10,7 +10,11 @@ defmodule Scraper.Examples.IndeedJobsTest do
   end
 
   defwhen ~r/^I search with these criteria:$/, %{table: criteria}, state do
-    {:ok, state}
+    position = Enum.find_value(criteria, fn row ->
+      row["Position"]
+    end)
+    query = %{q: position}
+    {:ok, Map.put(state, :query, query)}
   end
 
   defthen ~r/^I should get a list of matching job postings$/, _, state do
