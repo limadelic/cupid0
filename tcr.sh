@@ -24,7 +24,11 @@ generate_msg() {
 MSG=${1:-$(generate_msg)}
 echo "Message will be: ${MSG}"
 
-cd cupid0
+# Store the script directory
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Make sure we're in the umbrella project directory
+cd "$SCRIPT_DIR/cupid0" || exit 1
 
 # Run the tests
 if mix test; then
