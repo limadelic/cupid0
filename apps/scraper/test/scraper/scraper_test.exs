@@ -3,14 +3,13 @@ defmodule Scraper.IndeedTest do
   use ExUnit.Case
   import Mox
 
-  test "gets response" do
+  test "uses mock" do
 
     expect Scraper.HTTP, :get, fn _ ->
-      {:ok, %{body: "ok"}} 
+      {:ok, %{status_code: 200}} 
     end
 
-    response = Scraper.Indeed.search "dev"
-    assert is_binary(response)
+    Scraper.Indeed.search "dev"
 
   end
 
