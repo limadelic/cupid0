@@ -13,7 +13,10 @@ defmodule Scraper.Examples.IndeedJobsTest do
     position = Enum.find_value(criteria, fn row ->
       row["Position"]
     end)
-    query = %{q: position}
+    work_type = Enum.find_value(criteria, fn row ->
+      row["Work Type"]
+    end)
+    query = %{q: position, rbl: work_type}
     {:ok, Map.put(state, :query, query)}
   end
 
