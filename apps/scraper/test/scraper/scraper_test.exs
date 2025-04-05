@@ -7,22 +7,22 @@ defmodule Scraper.IndeedTest do
 
   setup do
 
-    on_exit(fn ->
-      Application.put_env(:scraper, :http_client, HTTPoison)
-    end)
+    on_exit fn ->
+      Application.put_env :scraper, :http_client, HTTPoison
+    end
 
-    Application.put_env(:scraper, :http_client, Scraper.MockHTTP)
+    Application.put_env :scraper, :http_client, Scraper.MockHTTP
     :ok
 
   end
 
   test "gets three jobs" do
 
-    expect(Scraper.MockHTTP, :get, fn _url ->
+    expect Scraper.MockHTTP, :get, fn _url ->
       {:ok, %{body: "[{},{},{}]"}} 
-    end)
+    end
 
-    {:ok, jobs} = Scraper.Indeed.search("dev")
+    {:ok, jobs} = Scraper.Indeed.search "dev"
     assert length(jobs) == 3
 
   end
