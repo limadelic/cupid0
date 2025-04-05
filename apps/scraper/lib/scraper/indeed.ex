@@ -1,4 +1,5 @@
 defmodule Scraper.Indeed do
+  @behaviour Scraper.HTTP
 
   @http Application.compile_env(:scraper, :http_client, Scraper.MockHTTP)
 
