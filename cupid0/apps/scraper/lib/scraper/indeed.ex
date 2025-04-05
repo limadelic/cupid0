@@ -1,9 +1,9 @@
 defmodule Scraper.Indeed do
 
   @base_url "https://www.indeed.com"
-  @path "/viewjob"
+  @path "/jobs"
 
-  def view_job params do
+  def search params do
     params
     |> query
     |> url
@@ -20,8 +20,8 @@ defmodule Scraper.Indeed do
     Keyword.get params, key, ""
   end
 
-  defp url query do
-    [@base_url, @path, "?", encode(query)]
+  defp url params do
+    [@base_url, @path, "?", encode(params)]
     |> Enum.join
   end
 
