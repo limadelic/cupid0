@@ -23,6 +23,8 @@ defmodule Scraper.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:httpoison, "~> 2.0"}
+    ]
   end
 end
