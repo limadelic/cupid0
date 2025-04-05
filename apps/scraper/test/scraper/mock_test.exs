@@ -1,4 +1,4 @@
-defmodule Scraper.IndeedTest do
+defmodule Scraper.MockTest do
 
   use ExUnit.Case
   import Mox
