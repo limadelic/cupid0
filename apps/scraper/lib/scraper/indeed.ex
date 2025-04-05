@@ -1,7 +1,7 @@
 defmodule Scraper.Indeed do
   @behaviour Scraper.HTTP
 
-  @http Application.compile_env(:scraper, :http_client, HTTPoison)
+  @http Application.compile_env(:scraper, :http_client)
 
   def get(url), do: @http.get(url)
 
