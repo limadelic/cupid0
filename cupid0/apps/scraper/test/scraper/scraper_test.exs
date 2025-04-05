@@ -18,4 +18,9 @@ defmodule Scraper.IndeedTest do
     url = Scraper.Indeed.search_url(q: "elixir developer")
     assert String.contains?(url, "q=elixir+developer")
   end
+
+  test "search_url includes location parameter" do
+    url = Scraper.Indeed.search_url(q: "elixir", l: "Remote")
+    assert String.contains?(url, "l=Remote")
+  end
 end
