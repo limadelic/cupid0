@@ -13,4 +13,9 @@ defmodule Scraper.IndeedTest do
     url = Scraper.Indeed.search_url(q: "elixir")
     assert String.contains?(url, "q=elixir")
   end
+
+  test "search_url encodes query parameters" do
+    url = Scraper.Indeed.search_url(q: "elixir developer")
+    assert String.contains?(url, "q=elixir+developer")
+  end
 end
