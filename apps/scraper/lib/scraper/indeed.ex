@@ -1,12 +1,14 @@
 defmodule Scraper.Indeed do
   @behaviour Scraper.HTTP
 
-  @http Application.compile_env(:scraper, :http_client)
-
-  def get(url), do: @http.get(url)
+  def get(url) do
+    http_client = Application.get_env(:scraper, :http_client)
+    http_client.get(url)
+  end
 
   def search term do
-    {:ok, %{body: json}} = @http.get "https://www.indeed.com/jobs?q=#{term}"
+    http_client = Application.get_env(:scraper, :http_client)
+    {:ok, %{body: json}} = http_client.get "https://www.indeed.com/jobs?q=#{term}"
     {:ok, Jason.decode! json}
   end
 

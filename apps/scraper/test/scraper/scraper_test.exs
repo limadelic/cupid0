@@ -6,6 +6,10 @@ defmodule Scraper.IndeedTest do
   setup :verify_on_exit!
 
   setup do
+    on_exit fn ->
+      Application.put_env(:scraper, :http_client, HTTPoison)
+    end
+
     Application.put_env(:scraper, :http_client, Scraper.MockHTTP)
     :ok
   end
