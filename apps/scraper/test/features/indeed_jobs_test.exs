@@ -6,7 +6,7 @@ defmodule Scraper.Examples.IndeedJobsTest do
   end
 
   defgiven ~r/^I want to search for remote software engineering jobs$/, _, state do
-    {:ok, state}
+    {:ok, Map.put(state, :base_url, "https://www.indeed.com/jobs")}
   end
 
   defwhen ~r/^I search with these criteria:$/, %{table: criteria}, state do
