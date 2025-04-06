@@ -16,17 +16,17 @@ defmodule Scraper.IndeedSpec do
 
   end
 
-  test "search with all criteria" do
+  test "search with criteria" do
 
-    {:ok, _} = Scraper.Indeed.search [
-      %{"Position" => "software engineer"},
-      %{"Work Type" => "Remote"},
-      %{"Salary" => "$135,000+"},
-      %{"Posted Within" => "Last 24 hours"},
-      %{"Sort By" => "Date"}
-    ]
+    {:ok, jobs} = Scraper.Indeed.search(
+      position: "software engineer",
+      work_type: "Remote",
+      salary: "$135,000+",
+      posted: "Last 24 hours",
+      sort: "Date"
+    )
 
-    assert_received {:get, "https://www.indeed.com/jobs?q=software+engineer&l=Remote&salary=$135,000&fromage=1&sort=date"}
+    assert length(jobs) > 0
 
   end
 

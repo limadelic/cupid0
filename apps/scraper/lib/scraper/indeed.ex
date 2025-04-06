@@ -8,7 +8,7 @@ defmodule Scraper.Indeed do
 
   end
 
-  def search term do
+  def search(position: _, work_type: _, salary: _, posted: _, sort: _) do
     
     {:ok, []}
 
