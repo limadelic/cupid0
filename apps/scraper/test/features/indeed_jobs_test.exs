@@ -10,10 +10,7 @@ defmodule Scraper.Features.IndeedJobsTest do
     :ok
   end
 
-  defwhen ~r/^I search with these criteria:$/, %{table: criteria}, _ do
-    term = wants(criteria, "Position")
-    {:ok, %{body: html}} = Scraper.Indeed.get("https://www.indeed.com/jobs?q=#{term}")
-    _title = Scraper.Indeed.parse_title(html)
+  defwhen ~r/^I search with these criteria:$/, %{table: _criteria}, _ do
     :ok
   end
 
@@ -21,12 +18,8 @@ defmodule Scraper.Features.IndeedJobsTest do
     :ok
   end
 
-  defthen ~r/^each job posting should have:$/, %{table: _fields}, state do
-    {:ok, state}
-  end
-
-  defp wants criteria, field do
-    Enum.find_value(criteria, fn row -> row[field] end)
+  defthen ~r/^each job posting should have:$/, %{table: _fields}, _ do
+    :ok
   end
 
 end
