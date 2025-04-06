@@ -1,3 +1,3 @@
-1. Empty line after multi-line def
-2. Empty line before end
-3. Only use parens when forced to
+- Empty line after any do block that spans multiple lines
+- Empty line before end
+- Only use parens when forced to

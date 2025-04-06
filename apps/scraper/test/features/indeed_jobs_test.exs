@@ -1,5 +1,6 @@
 defmodule Scraper.Features.IndeedJobsTest do
-  use Cabbage.Feature, async: false, file: "indeed_jobs.feature"
+  
+  use Cabbage.Feature, file: "indeed_jobs.feature"
 
   setup do
     {:ok, %{}}
@@ -10,12 +11,15 @@ defmodule Scraper.Features.IndeedJobsTest do
   end
 
   defwhen ~r/^I search with these criteria:$/, %{table: criteria}, state do
+    
     query = %{
-      q: get_criteria(criteria, "Position"),
-      rbl: get_criteria(criteria, "Work Type"),
-      salaryType: get_criteria(criteria, "Salary")
+      q: wants(criteria, "Position"),
+      rbl: wants(criteria, "Work Type"),
+      salaryType: wants(criteria, "Salary")
     }
+
     {:ok, Map.put(state, :query, query)}
+
   end
 
   defthen ~r/^I should get a list of matching job postings$/, _, state do
@@ -26,7 +30,8 @@ defmodule Scraper.Features.IndeedJobsTest do
     {:ok, state}
   end
 
-  defp get_criteria(criteria, field) do
+  defp wants criteria, field do
     Enum.find_value(criteria, fn row -> row[field] end)
   end
+
 end
