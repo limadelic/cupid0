@@ -16,7 +16,10 @@ defmodule Scraper.Features.IndeedJobsTest do
     work_type = Enum.find_value(criteria, fn row ->
       row["Work Type"]
     end)
-    {:ok, Map.put(state, :query, %{q: position, rbl: work_type})}
+    salary = Enum.find_value(criteria, fn row ->
+      row["Salary"]
+    end)
+    {:ok, Map.put(state, :query, %{q: position, rbl: work_type, salaryType: salary})}
   end
 
   defthen ~r/^I should get a list of matching job postings$/, _, state do
