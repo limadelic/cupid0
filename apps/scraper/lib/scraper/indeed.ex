@@ -8,7 +8,7 @@ defmodule Scraper.Indeed do
 
   end
 
-  def search(position: _, work_type: _, salary: _, posted: _, sort: _) do
+  def search(criteria) when is_list(criteria) do
     
     {:ok, []}
 

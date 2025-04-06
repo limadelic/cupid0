@@ -11,16 +11,11 @@ defmodule Scraper.Features.IndeedJobsTest do
   end
 
   defwhen ~r/^I search with these criteria:$/, %{table: criteria}, state do
-    
-    {:ok, jobs} = Scraper.Indeed.search(
-      position: wants(criteria, "Position"),
-      work_type: wants(criteria, "Work Type"),
-      salary: wants(criteria, "Salary"),
-      posted: wants(criteria, "Posted Within"),
-      sort: wants(criteria, "Sort By")
-    )
+    search = for [field, value] <- criteria, into: [] do
+      {String.to_atom(String.downcase(field)), value}
+    end
+    {:ok, jobs} = Scraper.Indeed.search search
     {:ok, Map.put(state, :jobs, jobs)}
-
   end
 
   defp wants criteria, field do
