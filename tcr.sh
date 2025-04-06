@@ -35,7 +35,6 @@ if mix test; then
     echo "✅ Tests passed - committed: ${MSG}"
 else
     # If tests fail, revert all changes
-    cd ..
     git reset --hard
     echo "❌ Tests failed - changes reverted"
 fi
