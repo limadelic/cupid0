@@ -19,9 +19,6 @@ defmodule Scraper.Features.IndeedJobsTest do
   
   end
 
-  defp wants criteria, field do
-    Enum.find_value(criteria, fn row -> row[field] end)
-  end
 
   defthen ~r/^I should get a list of matching job postings$/, _, _ do
     :ok
