@@ -10,6 +10,7 @@ defmodule Scraper.Indeed do
 
   def search(criteria) when is_list(criteria) do
     
+    {:ok, %{body: _}} = get "https://www.indeed.com/jobs"
     {:ok, []}
 
   end
