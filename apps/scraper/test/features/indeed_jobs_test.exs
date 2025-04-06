@@ -1,5 +1,4 @@
 defmodule Scraper.Features.IndeedJobsTest do
-  
   use Cabbage.Feature, file: "indeed_jobs.feature"
 
   setup do
