@@ -9,10 +9,7 @@ defmodule Scraper.Indeed do
   end
 
   def search term do
-
-    {:ok, %{body: json}} = http_client().get "https://www.indeed.com/jobs?q=#{term}"
-    {:ok, Jason.decode! json}
-
+    {:ok, []}
   end
 
   def parse_title html do
