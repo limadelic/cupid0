@@ -8,6 +8,10 @@ defmodule Scraper.IndeedSpec do
   setup do
 
     Application.put_env :scraper, :http_client, Scraper.MockHTTP
+    expect Scraper.MockHTTP, :get, fn url ->
+      send self(), {:get, url}
+      {:ok, %{body: ""}}
+    end
     :ok
 
   end
