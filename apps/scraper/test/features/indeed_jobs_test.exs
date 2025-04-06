@@ -11,9 +11,11 @@ defmodule Scraper.Features.IndeedJobsTest do
   end
 
   defwhen ~r/^I search with these criteria:$/, %{table: criteria}, state do
+    
     term = wants(criteria, "Position")
-    {:ok, jobs} = Scraper.Indeed.search(term)
+    {:ok, jobs} = Scraper.Indeed.search term
     {:ok, Map.put(state, :jobs, jobs)}
+
   end
 
   defp wants criteria, field do
