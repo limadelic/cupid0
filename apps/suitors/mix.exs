@@ -1,9 +1,9 @@
-defmodule Scraper.MixProject do
+defmodule Suitors.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :scraper,
+      app: :suitors,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -18,15 +18,13 @@ defmodule Scraper.MixProject do
   def application do
     [
       extra_applications: [:logger],
-      mod: {Scraper.Application, []}
+      mod: {Suitors.Application, []}
     ]
   end
 
   defp deps do
     [
-      {:httpoison, "~> 2.0"},
       {:jason, "~> 1.4"},
-      {:mox, "~> 1.0", only: :test},
       {:cabbage, "~> 0.4.1", only: :test}
     ]
   end
