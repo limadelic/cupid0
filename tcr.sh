@@ -17,16 +17,13 @@ if [[ ! "$1" =~ ^[a-z]+:.+ ]]; then
     exit 1
 fi
 
-# Check number of files changed
-CHANGED_FILES=$(git diff --name-only | wc -l)
-CHANGED_FILES_STAGED=$(git diff --staged --name-only | wc -l)
-TOTAL_CHANGED_FILES=$((CHANGED_FILES + CHANGED_FILES_STAGED))
+# Check number of files changed (including new files)
+TOTAL_CHANGED_FILES=$(git status -s | wc -l)
 
 # List changed files
 echo "Files changed:"
 echo ""
-git diff --name-only
-git diff --staged --name-only
+git status -s
 
 # Check if too many files changed
 if [ $TOTAL_CHANGED_FILES -gt 2 ] && [ "$2" != "$TOTAL_CHANGED_FILES" ]; then
