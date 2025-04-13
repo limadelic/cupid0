@@ -23,7 +23,7 @@ TOTAL_CHANGED_FILES=$(git status -s | wc -l | tr -d ' ')
 # List changed files
 echo "Files changed:"
 echo ""
-git status -s
+git status -s | sed 's|apps/[^/]*/|apps/|g'
 
 # Check if too many files changed
 if [ $TOTAL_CHANGED_FILES -gt 2 ] && [ "$2" != "$TOTAL_CHANGED_FILES" ]; then
