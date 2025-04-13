@@ -44,9 +44,9 @@ echo ""
 
 # Run the tests
 if mix test; then
-    # If tests pass, commit and push all changes
+    # If tests pass, commit and push all changes (quietly)
     git add .
-    git commit -m "$1"
+    git commit -q -m "$1"
     echo "✅ Tests passed - committed and pushed: $1"
 else
     # If tests fail, revert all changes
