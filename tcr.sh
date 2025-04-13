@@ -50,7 +50,6 @@ if mix test; then
     # If tests pass, commit and push all changes
     git add .
     git commit -m "$1"
-    git push
     echo "✅ Tests passed - committed and pushed: $1"
 else
     # If tests fail, revert all changes
