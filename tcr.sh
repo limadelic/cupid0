@@ -46,15 +46,15 @@ echo "Running TCR..."
 echo ""
 
 # Run the tests
-# if mix test; then
+if mix test; then
     # If tests pass, commit and push all changes
     git add .
     git commit -m "$1"
     git push
     echo "✅ Tests passed - committed and pushed: $1"
-# else
+else
     # If tests fail, revert all changes
     # git reset --hard
     # git clean -fd
     echo "❌ Tests failed - changes reverted"
-# fi
+fi
