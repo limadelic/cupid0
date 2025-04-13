@@ -18,7 +18,7 @@ if [[ ! "$1" =~ ^[a-z]+:.+ ]]; then
 fi
 
 # Check number of files changed (including new files)
-TOTAL_CHANGED_FILES=$(git status -s | wc -l)
+TOTAL_CHANGED_FILES=$(git status -s | wc -l | tr -d ' ')
 
 # List changed files
 echo "Files changed:"
